@@ -1,4 +1,4 @@
-requests==2.18.4
+requests==2.20.0
 beautifulsoup4==4.8.1
 interface==2.11.1
 pdfminer==20191020
