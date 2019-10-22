@@ -1,5 +1,8 @@
+import sys
+# if there are no conflicting packages in the default Python Libs =>
+# sys.path.append("/usr/home/byschii/pdfminer")
 
-from pdfminer import pdf2txt
+import pdfminer
 
 print(
 	dir(pdfminer)

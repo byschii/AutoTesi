@@ -1,0 +1,155 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body>
+<span style="position:absolute; border: gray 1px solid; left:0px; top:50px; width:612px; height:792px;"></span>
+<div style="position:absolute; top:50px;"><a name="1">Page 1</a></div>
+<div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:178px; top:177px; width:254px; height:17px;"><span style="font-family: KPZLLV+CMR17; font-size:17px">Relazione Algoritmi e Strutture Dati
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:272px; top:213px; width:67px; height:11px;"><span style="font-family: ETPNYI+CMR12; font-size:11px">Matteo Scala
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:276px; top:239px; width:59px; height:11px;"><span style="font-family: ETPNYI+CMR12; font-size:11px">Luglio 2018
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:86px; top:282px; width:8px; height:14px;"><span style="font-family: ZEAXFH+CMBX12; font-size:14px">1
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:110px; top:282px; width:89px; height:14px;"><span style="font-family: ZEAXFH+CMBX12; font-size:14px">Introduzione
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:86px; top:310px; width:439px; height:67px;"><span style="font-family: ETPNYI+CMR12; font-size:11px">Avendo scelto di sviluppare l’ elaborato numero 1, il mio programma deve calcolare i
+<br></span><span style="font-family: ETPNYI+CMR12; font-size:11px">centri di un grafo fornito tramite ﬁle. Per fare ci`o, ho deciso di suddividere il programma
+<br></span><span style="font-family: ETPNYI+CMR12; font-size:11px">tendenzialemente in 4 parti. Apertura e lettura del ﬁle, deﬁnizione della struttura dati
+<br>”grafo”, calcolo delle distanze dei nodi e seguentemente dei centri, scrittura del risultato
+<br>su ﬁle.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:86px; top:399px; width:82px; height:14px;"><span style="font-family: ZEAXFH+CMBX12; font-size:14px">2 L’ Input
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:86px; top:427px; width:439px; height:67px;"><span style="font-family: ETPNYI+CMR12; font-size:11px">Nella prima parte tutto il contenuto del ﬁle viene caricato su una stringa attraverso
+<br>una funzione che prima calcola il numero di caratteri (e quindi la dimensione) del ﬁle,
+<br>alloca suﬃciente memoria per tutti i caratteri, poi con </span><span style="font-family: BYKKZT+CMTT12; font-size:11px">fread </span><span style="font-family: ETPNYI+CMR12; font-size:11px">legge tutto il ﬁle e mette
+<br>il contenuto nella stringa appena allocata. Alla ﬁne ritorna al </span><span style="font-family: BYKKZT+CMTT12; font-size:11px">main </span><span style="font-family: ETPNYI+CMR12; font-size:11px">il puntatore della
+<br>stringa.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:86px; top:517px; width:139px; height:14px;"><span style="font-family: ZEAXFH+CMBX12; font-size:14px">3 Creazione Grafo
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:86px; top:544px; width:439px; height:115px;"><span style="font-family: ETPNYI+CMR12; font-size:11px">Per la implementazione della struttura ”grafo” ho deciso di adottare la classica strut-
+<br>tura con liste di adiacenza; la sceltra tra questa e la rappresentazione con matrice `e
+<br>stata condizionata principalmente dal fatto che ritengo le liste di adiacenza pi`u facili
+<br>da utilizzare e perche in caso di graﬁ con elevato numero do nodi, poteva capitare che
+<br>non si riuscisse ad allocare suﬃcente memoria contigua per la matrice. In paricolare,
+<br>i nodi sono memorizzati con una lista concatenata (non ordinata) e ad ogni nodo `e
+<br>attaccata un altra lista concatenzata per rappresentare gli archi a cui `e collegato.
+<br></span><span style="font-family: ZEAXFH+CMBX12; font-size:11px">struct </span><span style="font-family: ETPNYI+CMR12; font-size:11px">GraphADS</span><span style="font-family: BEWRCL+CMSY10; font-size:20px">{
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:87px; top:653px; width:228px; height:104px;"><span style="font-family: ZEAXFH+CMBX12; font-size:11px">struct </span><span style="font-family: ETPNYI+CMR12; font-size:11px">GraphNode </span><span style="font-family: BEWRCL+CMSY10; font-size:20px">∗ </span><span style="font-family: ETPNYI+CMR12; font-size:11px">graph ;
+<br></span><span style="font-family: ZEAXFH+CMBX12; font-size:11px">int </span><span style="font-family: ETPNYI+CMR12; font-size:11px">nodes ;
+<br></span><span style="font-family: ZEAXFH+CMBX12; font-size:11px">int </span><span style="font-family: ETPNYI+CMR12; font-size:11px">a r c h s ;
+<br></span><span style="font-family: BEWRCL+CMSY10; font-size:20px">} </span><span style="font-family: ETPNYI+CMR12; font-size:11px">;
+<br></span><span style="font-family: ZEAXFH+CMBX12; font-size:11px">struct </span><span style="font-family: ETPNYI+CMR12; font-size:11px">GraphNode</span><span style="font-family: BEWRCL+CMSY10; font-size:20px">{
+<br></span><span style="font-family: ZEAXFH+CMBX12; font-size:11px">int </span><span style="font-family: ETPNYI+CMR12; font-size:11px">t ag ;
+<br></span><span style="font-family: ZEAXFH+CMBX12; font-size:11px">int </span><span style="font-family: ETPNYI+CMR12; font-size:11px">e c c e n t r i c i t a ;
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:303px; top:777px; width:4px; height:9px;"><span style="font-family: BIVFFP+CMR10; font-size:9px">1
+<br></span></div><span style="position:absolute; border: gray 1px solid; left:0px; top:892px; width:612px; height:792px;"></span>
+<div style="position:absolute; top:892px;"><a name="2">Page 2</a></div>
+<div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:143px; top:969px; width:207px; height:34px;"><span style="font-family: ZEAXFH+CMBX12; font-size:11px">struct </span><span style="font-family: ETPNYI+CMR12; font-size:11px">AdjacencyListElem </span><span style="font-family: BEWRCL+CMSY10; font-size:20px">∗ </span><span style="font-family: ETPNYI+CMR12; font-size:11px">a l ;
+<br></span><span style="font-family: ZEAXFH+CMBX12; font-size:11px">struct </span><span style="font-family: ETPNYI+CMR12; font-size:11px">GraphNode </span><span style="font-family: BEWRCL+CMSY10; font-size:20px">∗ </span><span style="font-family: ETPNYI+CMR12; font-size:11px">next ;
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:87px; top:997px; width:174px; height:34px;"><span style="font-family: BEWRCL+CMSY10; font-size:20px">} </span><span style="font-family: ETPNYI+CMR12; font-size:11px">;
+<br></span><span style="font-family: ZEAXFH+CMBX12; font-size:11px">struct </span><span style="font-family: ETPNYI+CMR12; font-size:11px">AdjacencyListElem</span><span style="font-family: BEWRCL+CMSY10; font-size:20px">{
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:143px; top:1034px; width:221px; height:25px;"><span style="font-family: ZEAXFH+CMBX12; font-size:11px">int </span><span style="font-family: ETPNYI+CMR12; font-size:11px">nodeTag ;
+<br></span><span style="font-family: ZEAXFH+CMBX12; font-size:11px">struct </span><span style="font-family: ETPNYI+CMR12; font-size:11px">AdjacencyListElem </span><span style="font-family: BEWRCL+CMSY10; font-size:20px">∗ </span><span style="font-family: ETPNYI+CMR12; font-size:11px">next ;
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:86px; top:1053px; width:439px; height:277px;"><span style="font-family: BEWRCL+CMSY10; font-size:20px">} </span><span style="font-family: ETPNYI+CMR12; font-size:11px">;
+<br>Le strutture sopra rappresentate servono, rispettivamente, per gestire meglio il grafo,
+<br>rappresentare la lista dei nodi, rappresentare una lista di nodi adiacenti ad un nodo
+<br>speciﬁco. Considerando che le tre la lista concatenata per i nodi e quella concatenata
+<br>per le liste di adiacenza ed occupano rispettivamente 16, 24 e 16 byte; si pu`o facilmente
+<br>calcolare che il grafo occuper`a 16 + 24*numeroNodi + 16*numeroArchi*2 byte di
+<br>memoria (es. tra le istanze gi`a fornite, il grafo pi`u piccolo occuer`a circa 5.5KB ). Per
+<br></span><span style="font-family: ETPNYI+CMR12; font-size:11px">estrapolare le informazioni dal ﬁle, ho scelto un approccio in pi`u fasi. Per prima cosa,
+<br></span><span style="font-family: ETPNYI+CMR12; font-size:11px">divido la stringa (quella col contenuto del ﬁle) nelle righe che la compongono (divido
+<br>sugli ”</span><span style="font-family: BEWRCL+CMSY10; font-size:20px">\</span><span style="font-family: ETPNYI+CMR12; font-size:11px">n”); questo per poi rendere piu facile la conversione delle singole righe in array
+<br>di interi, che sono pi`u facilemente gestibili nel resto del programma. A questo punto,
+<br>dopo aver convertito le stringhe in array di interi, scorrendo tutto l’ array che contiene
+<br>le righe trasformate in array, genero il grafo. Il processo `e piu o meno questo: salto
+<br>la prima riga (dato che contiene informazioni pi`u generali sul grafo), con un ciclo,
+<br>controllo se il primo ed il secondo numero sono gi`a inseriti nella lista dei nodi (il terzo
+<br>numero lo ignoro, siccome nella consegna del progetto non si parla di grafo pesato), se
+<br>con ci sono ovviamente li aggiungo, poi estendo le liste di adiacenza dei due nodi con
+<br>il nodo a cui sono attaccati; questo per tutti i valori nel ﬁle. Il risultato `e l’ insieme
+<br>dei nodi e delle liste di adiacenza che rappresentano il grafo.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:86px; top:1353px; width:247px; height:14px;"><span style="font-family: ZEAXFH+CMBX12; font-size:14px">4 Calcolo di Eccentricit`a e Centri
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:86px; top:1380px; width:439px; height:67px;"><span style="font-family: ETPNYI+CMR12; font-size:11px">Una volta che ho a disposizione la struttura grafo, pero ogni nodo calcolo l’ eccentri-
+<br>cit`a. Anche qu`ı, divide et impera. Prima di tutto implemento la classica </span><span style="font-family: WYJGWD+CMTI12; font-size:11px">Breadth-First
+<br>Search </span><span style="font-family: ETPNYI+CMR12; font-size:11px">con la quale estrapolo le distanze da un nodo da tutti gli altri. Ovviamente, per
+<br>l’ implementazione serve una coda che ho implementato con la struttura pi`u semplice
+<br>possibile:
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:87px; top:1461px; width:131px; height:20px;"><span style="font-family: ZEAXFH+CMBX12; font-size:11px">struct </span><span style="font-family: ETPNYI+CMR12; font-size:11px">SimpleQueue</span><span style="font-family: BEWRCL+CMSY10; font-size:20px">{
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:143px; top:1475px; width:102px; height:34px;"><span style="font-family: ZEAXFH+CMBX12; font-size:11px">int </span><span style="font-family: BEWRCL+CMSY10; font-size:20px">∗ </span><span style="font-family: ETPNYI+CMR12; font-size:11px">e l e m e n t s ;
+<br></span><span style="font-family: ZEAXFH+CMBX12; font-size:11px">int </span><span style="font-family: ETPNYI+CMR12; font-size:11px">elem num ;
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:86px; top:1503px; width:439px; height:96px;"><span style="font-family: BEWRCL+CMSY10; font-size:20px">} </span><span style="font-family: ETPNYI+CMR12; font-size:11px">;
+<br>Per quanto riguarda il BFS, ho creato una funzione che in input prende grafo e nodo
+<br></span><span style="font-family: ETPNYI+CMR12; font-size:11px">da considerare sorgente, inizializza due vettori (uno per i nodi gi`a visitati e uno per le
+<br></span><span style="font-family: ETPNYI+CMR12; font-size:11px">distanze da quello sorgente), poi partendo dal nodo sorgente, mette in coda tutti i nodi
+<br>adiacenti, ne calcola le distanze della sorgente e li tagga come visitati, questo per tutti
+<br>i nodi del grafo (ﬁnch´e ce ne sono in coda). Con questa funzione calcolo l’ eccentrici`a
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:303px; top:1619px; width:4px; height:9px;"><span style="font-family: BIVFFP+CMR10; font-size:9px">2
+<br></span></div><span style="position:absolute; border: black 1px solid; left:198px; top:1507px; width:3px; height:0px;"></span>
+<span style="position:absolute; border: gray 1px solid; left:0px; top:1734px; width:612px; height:792px;"></span>
+<div style="position:absolute; top:1734px;"><a name="3">Page 3</a></div>
+<div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:86px; top:1820px; width:439px; height:39px;"><span style="font-family: ETPNYI+CMR12; font-size:11px">di ogni nodo (che per deﬁnizione `e la distanza dal nodo pi`u lontano). Con un’ altra
+<br>funzione poi calcolo qual `e l’ eccetricit`a minore e quali sono i nodi con tale eccentricit`a
+<br>(sempre per deﬁnizione, essi saranno i centri).
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:86px; top:1882px; width:75px; height:14px;"><span style="font-family: ZEAXFH+CMBX12; font-size:14px">5 Output
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:86px; top:1910px; width:439px; height:39px;"><span style="font-family: ETPNYI+CMR12; font-size:11px">In ﬁne, una volta che ho collezionato tutti i centri con un array, non faccio altro che
+<br>scriverli su ﬁle, semplicemente con le funzioni </span><span style="font-family: BYKKZT+CMTT12; font-size:11px">fopen </span><span style="font-family: ETPNYI+CMR12; font-size:11px">per aprire il ﬁle e un </span><span style="font-family: BYKKZT+CMTT12; font-size:11px">while </span><span style="font-family: ETPNYI+CMR12; font-size:11px">per
+<br>scorrere i valori dell’ array e stamparli su ﬁle separati da virgole, come richiesto.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:86px; top:1972px; width:102px; height:14px;"><span style="font-family: ZEAXFH+CMBX12; font-size:14px">6 Prestazioni
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:86px; top:1999px; width:439px; height:39px;"><span style="font-family: ETPNYI+CMR12; font-size:11px">In generale ho cercato di scrivere il codice nella maniera pi`u chiara e riutilizzabile
+<br></span><span style="font-family: ETPNYI+CMR12; font-size:11px">possibile, senza privilegiare troppo le performance. Quindi, per concludere e per dare
+<br></span><span style="font-family: ETPNYI+CMR12; font-size:11px">comunque un’ idea dei risultati ottenuti mostro questa tabella sulle prestazioni.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:128px; top:2052px; width:44px; height:9px;"><span style="font-family: BIVFFP+CMR10; font-size:9px">Nome File
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:196px; top:2052px; width:299px; height:9px;"><span style="font-family: BIVFFP+CMR10; font-size:9px">Num. Nodi Num. Archi Tempo Esecuzione Memoria occupata
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:116px; top:2064px; width:68px; height:47px;"><span style="font-family: BIVFFP+CMR10; font-size:9px">g100sparse.dat
+<br>g100dense.dat
+<br>g1000sparse.dat
+<br>g1000dense.dat
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:211px; top:2064px; width:19px; height:47px;"><span style="font-family: BIVFFP+CMR10; font-size:9px">100
+<br>100
+<br>1000
+<br>1000
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:269px; top:2064px; width:29px; height:47px;"><span style="font-family: BIVFFP+CMR10; font-size:9px">1000
+<br>7000
+<br>9000
+<br>500000
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:351px; top:2064px; width:22px; height:47px;"><span style="font-family: BIVFFP+CMR10; font-size:9px">0.01
+<br>0.03
+<br>3.22
+<br>80.82
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:444px; top:2064px; width:24px; height:47px;"><span style="font-family: BIVFFP+CMR10; font-size:9px">4648
+<br>5400
+<br>13500
+<br>78780
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:86px; top:2123px; width:439px; height:45px;"><span style="font-family: BIVFFP+CMR10; font-size:9px">Tabella 1: </span><span style="font-family: LKYWJB+CMTI10; font-size:9px">Test eseguiti con una CPU i7 8550u, 16GB di RAM DDR4, programma compilato con GCC
+<br>ed eseguito su Linux Ubuntu. I tempi non considerano ne la lettura del ﬁle di input, ne la scrittura del
+<br>ﬁle di output e sono espressi in secondi. L’ occupazione di memoria si riferisce alla memoria viruale
+<br>ed `e espressa in kilobyte
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:303px; top:2461px; width:4px; height:9px;"><span style="font-family: BIVFFP+CMR10; font-size:9px">3
+<br></span></div><span style="position:absolute; border: black 1px solid; left:109px; top:2051px; width:392px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:109px; top:2052px; width:0px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:110px; top:2052px; width:80px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:252px; top:2052px; width:64px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:409px; top:2052px; width:92px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:502px; top:2052px; width:0px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:109px; top:2064px; width:392px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:109px; top:2064px; width:0px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:110px; top:2064px; width:80px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:252px; top:2064px; width:64px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:409px; top:2064px; width:92px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:502px; top:2064px; width:0px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:109px; top:2076px; width:392px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:109px; top:2076px; width:0px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:110px; top:2076px; width:80px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:252px; top:2076px; width:64px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:409px; top:2076px; width:92px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:502px; top:2076px; width:0px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:109px; top:2089px; width:392px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:109px; top:2089px; width:0px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:110px; top:2089px; width:80px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:252px; top:2089px; width:64px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:409px; top:2089px; width:92px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:502px; top:2089px; width:0px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:109px; top:2101px; width:392px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:109px; top:2101px; width:0px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:110px; top:2101px; width:80px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:252px; top:2101px; width:64px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:409px; top:2101px; width:92px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:502px; top:2101px; width:0px; height:11px;"></span>
+<span style="position:absolute; border: black 1px solid; left:109px; top:2113px; width:392px; height:0px;"></span>
+<div style="position:absolute; top:0px;">Page: <a href="#1">1</a>, <a href="#2">2</a>, <a href="#3">3</a></div>
+</body></html>
